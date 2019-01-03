@@ -1,0 +1,11 @@
+node_modules/
+public/
+output/
+.chrome/
+pakage-lock.json
+.DS_Store
+.appconfig.user.json
+npm-debug.log
+.idea/
+dist/
+*.log
