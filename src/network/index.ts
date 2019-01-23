@@ -11,19 +11,22 @@ client.interceptors.response.use(
   response => {
     if (response.status === 200) {
       const { data } = response;
-      if (typeof data === 'object') {
-        if (data.code !== 0) {
-          logger.info('network error', data, '\nurl:', response && response.config && response.config.url);
-        }
-      }
+      // if (typeof data === 'object') {
+      //   if (data.message !== 'success') {
+      //     logger.error('network error', JSON.stringify(data));
+      //     logger.info('url:', response && response.config && response.config.url);
+      //   }
+      // }
       return data;
     } else {
-      logger.info('network error', response, '\nurl:', response && response.config && response.config.url);
+      logger.error('network error', JSON.stringify(response));
+      logger.info('url:', response && response.config && response.config.url);
       return Promise.reject(response);
     }
   },
   error => {
-    logger.info('network error', error, '\nurl:', error && error.config && error.config.url);
+    logger.error('network error', JSON.stringify(error));
+    logger.info('url:', error && error.config && error.config.url);
   },
 );
 
